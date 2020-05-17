@@ -1,0 +1,139 @@
+﻿<Window x:Class="Fairybells.WpfButtonRings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfButtonRings="clr-namespace:Fairybells.WpfButtonRings"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="wpfButtonRings:DemoCommands.AddButtonCommand" CanExecute="OnAddButtonCommandCanExecute" Executed="OnAddButtonCommandExecuted" />
+        <CommandBinding Command="wpfButtonRings:DemoCommands.RemoveButtonCommand" CanExecute="OnRemoveButtonCommandCanExecute" Executed="OnRemoveButtonCommandExecuted" />
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="20" /> <!-- Margin. -->
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="450" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding Path=BorderBrush}" BorderThickness="1">
+                <wpfButtonRings:ButtonRing ItemsSource="{Binding Path=ButtonRingItems}"
+                                           ControlSize="{Binding Path=ControlSize}"
+                                           RingDistance="{Binding Path=RingDistance}"
+                                           RingWidth="{Binding Path=RingWidth}"
+                                           RingRotation="{Binding Path=RingRotation}"
+                                           ButtonDistance="{Binding Path=ButtonDistance}"
+                                           ButtonDistanceMode="{Binding Path=ButtonDistanceMode}"
+                                           RotateContents="{Binding Path=RotateContents}" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" /> <!-- Margin. -->
+                <ColumnDefinition />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0">Control Size</TextBlock>
+            <Slider Grid.Column="2" Grid.Row="0" Minimum="100" Maximum="400" Value="{Binding Path=ControlSize}" />
+            <TextBox Grid.Column="3" Grid.Row="0" IsReadOnly="True" Text="{Binding Path=ControlSize}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="1">Ring Distance</TextBlock>
+            <Slider Grid.Column="2" Grid.Row="1" Minimum="0" Maximum="10" Value="{Binding Path=RingDistance}" />
+            <TextBox Grid.Column="3" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=RingDistance}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2">Ring Width</TextBlock>
+            <Slider Grid.Column="2" Grid.Row="2" Minimum="10" Maximum="100" Value="{Binding Path=RingWidth}" />
+            <TextBox Grid.Column="3" Grid.Row="2" IsReadOnly="True" Text="{Binding Path=RingWidth}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="3">Ring Rotation</TextBlock>
+            <Slider Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="360" Value="{Binding Path=RingRotation}" />
+            <TextBox Grid.Column="3" Grid.Row="3" IsReadOnly="True" Text="{Binding Path=RingRotation}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="4">Button Distance</TextBlock>
+            <Slider Grid.Column="2" Grid.Row="4" Minimum="1" Maximum="100" Value="{Binding Path=ButtonDistance}" />
+            <TextBox Grid.Column="3" Grid.Row="4" IsReadOnly="True" Text="{Binding Path=ButtonDistance}" />
+
+            <CheckBox Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5" IsChecked="{Binding Path=IsTotalButtonDistance}">Is Total Distance</CheckBox>
+
+            <CheckBox Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" IsChecked="{Binding Path=RotateContents}">Rotate Contents</CheckBox>
+
+            <CheckBox Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="7" IsChecked="{Binding Path=IsBorderVisible}">Show Border</CheckBox>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Height" Value="24" />
+                    <Setter Property="Width" Value="24" />
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+            </Grid.Resources>
+
+            <CheckBox Grid.Column="0" Grid.Row="0" IsChecked="{Binding Path=IsAEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="0" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">A</Button>
+
+            <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=IsBEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">B</Button>
+
+            <CheckBox Grid.Column="2" Grid.Row="0" IsChecked="{Binding Path=IsCEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="2" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">C</Button>
+
+            <CheckBox Grid.Column="3" Grid.Row="0" IsChecked="{Binding Path=IsDEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="3" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">D</Button>
+
+            <CheckBox Grid.Column="4" Grid.Row="0" IsChecked="{Binding Path=IsEEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="4" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">E</Button>
+
+            <CheckBox Grid.Column="5" Grid.Row="0" IsChecked="{Binding Path=IsFEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="5" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand">F</Button>
+
+            <CheckBox Grid.Column="6" Grid.Row="0" IsChecked="{Binding Path=IsArrowEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="6" Grid.Row="1" Command="wpfButtonRings:DemoCommands.AddButtonCommand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <Path Data="M1,6L6,1L11,6H1Z" Fill="Black" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
