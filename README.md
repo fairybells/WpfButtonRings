@@ -52,6 +52,11 @@ An actual button instance. Its most relevant properties are:
 * `Tooltip`
 * `Command`, to handle the button click.
 
+## Customization
+To change the button colors (the ones used here were just randomly chosen for the sample project),
+open the ButtonRingStyle.xaml, go to the style with target type ButtonRingItem and replace the brush resources with ones
+that are more fitting to your project.
+
 ## Samples
 
 The sample project demostrates how to add buttons programatically. It also demonstrates how the properties affect the appearance.
@@ -80,5 +85,5 @@ You can also add buttons at design time via XAML.
 
 ## Limitations
 
-At least 2 buttons are required. A single circular button is not supported.
-
+* At least 2 buttons are required. A single circular button is not supported.
+* Modifying the ItemsSource after it has been assigned to the ButtonRing, will break the appearance. Instead, set the ItemsSource to null and re-assign the ItemsSource after modification.
