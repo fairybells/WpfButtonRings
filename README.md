@@ -80,5 +80,5 @@ You can also add buttons at design time via XAML.
 
 ## Limitations
 
-At least 2 buttons are required. A single circular button is now supported.
+At least 2 buttons are required. A single circular button is not supported.
 
